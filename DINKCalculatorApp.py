@@ -1,3 +1,4 @@
+#personal finance calculator developed by managerclaire
 def DINKcalculator():
     name_a = input("First spouse's name: ")
     name_b = input("Second spouse's name: ")
@@ -15,6 +16,7 @@ def DINKcalculator():
     final_savings = retirement(savings)
     print("Retirement balance: " + '${:,.2f}'.format(final_savings))
 
+#pulls name_a or name_b from DINKcalculator()
 def ene(name_var):
     ene = int(input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
     if ene == 1:
@@ -23,10 +25,12 @@ def ene(name_var):
     elif ene == 2:
         income = salary(name_var)
         return income
+    #error
     else:
         print("I'm sorry, I did not recognize that input. Please start over.")
         return
 
+#pulls name_a or name_b from DINKcalculator()
 def wage(name_var):
     hours = float(input("How many hours does " + name_var + " work per week? "))
     wage_var = float(input("How much does " + name_var + " make per hour? "))
@@ -35,12 +39,14 @@ def wage(name_var):
     print(name_var + " makes " + '${:,.2f}'.format(weekly) + " per week and approximately " + '${:,.2f}'.format(monthly) + " per month.")
     return monthly
 
+#pulls name_a or name_b from DINKcalculator()
 def salary(name_var):
     yearly = float(input("What is " + name_var + "'s annual salary? "))
     monthly = yearly / 12
     print(name_var + " makes " + '${:,.2f}'.format(monthly) + " per month.")
     return monthly
 
+#pulls combined_income from DINKcalculator()
 def taxes(income):
     annual_income = income*12
     tax_income = annual_income - 12700 - 4050*2
@@ -63,6 +69,7 @@ def taxes(income):
 
 def expenses():
     exp_option = int(input("Enter 1 if you would like to itemize expenses or 2 to not: "))
+    #int input for each expense category
     if exp_option == 1:
         rent = float(input("Monthly housing costs: "))
         health = float(input("Monthly healthcare costs: "))
@@ -71,8 +78,10 @@ def expenses():
         debt = float(input("Monthly debt payments: "))
         shopping = float(input("Other monthly expenses: "))
         total_expenses = rent + health + transportation + food + shopping + debt
+    #int input for total expenses
     elif exp_option == 2:
         total_expenses = float(input("Total monthly expenses: "))
+    #error
     else:
         print("I'm sorry, I did not recognize that input. Please start over.")
         return
