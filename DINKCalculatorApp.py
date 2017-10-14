@@ -17,7 +17,7 @@ def DINKcalculator():
 
 #handles results
 def print_function(income,taxes,savings,retirement):
-    print("Gross monthly income: " + '#{:,.2f}'.format(income))
+    print("Gross monthly income: " + '${:,.2f}'.format(income))
     print("Approximate monthly taxes: " + '${:,.2f}'.format(taxes))
     print("Approximate monthly savings: " + '${:,.2f}'.format(savings))
     print("Retirement balance: " + '${:,.2f}'.format(retirement))
