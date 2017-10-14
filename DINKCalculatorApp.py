@@ -157,7 +157,48 @@ def expenses():
     return total_expenses
 
 def retirement(mon_save):
-    
+    valid = False
+    b_valid = False
+    y_valid = False
+    rc_valid = False
+    r_valid = False
+    while b_valid == False:
+        try:
+            balance = float(input("How much do you currently have saved for retirement? "))
+            b_valid = True
+        except ValueError:
+            b_valid = False
+    while y_valid == False:
+        try:
+            years_till = int(input("How many years until retirement? "))
+            y_valid = True
+        except ValueError:
+            y_valid = False
+    while valid == False:
+        while rc_valid == False:
+            try:
+                rate_choice = int(input("Enter 1 to use default growth rate. Enter 2 to use a custom rate. "))
+                rc_valid = True
+                if rate_choice == 1:
+                    valid = True
+                    if years_till <= 10:
+                        rate = .04
+                    elif years_till <= 25:
+                        rate = .05
+                    else:
+                        rate = .06
+                elif rate_choice == 2:
+                    valid = True
+                else:
+                    valid = False
+                while r_valid == False:
+                    try:
+                        rate = float(input("Enter an interest rate in decimals: "))
+                        r_valid = True
+                    except ValueError:
+                        r_valid = False
+            except ValueError:
+                rc_valid = False
     monthly_rate = rate/12
     n_months = years_till*12
     final_savings = balance*(1+monthly_rate)**n_months + ((1+monthly_rate)**n_months-1)/monthly_rate*mon_save
