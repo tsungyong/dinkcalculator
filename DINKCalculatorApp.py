@@ -20,19 +20,37 @@ def DINKcalculator():
 def ene(name_var):
     valid = False
     while valid == False:
-        ene = int(input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
-        if ene == 1:
-            income = wage(name_var)
-            valid = True
-        elif ene == 2:
-            income = salary(name_var)
-            valid = True
+        try:
+            ene = int(input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
+            if ene == 1:
+                income = wage(name_var)
+                valid = True
+            elif ene == 2:
+                income = salary(name_var)
+                valid = True    
+            break
+        except ValueError:
+            print("Please try again.")
     return income
 
 #pulls name_a or name_b from DINKcalculator()
 def wage(name_var):
-    hours = float(input("How many hours does " + name_var + " work per week? "))
-    wage_var = float(input("How much does " + name_var + " make per hour? "))
+    hoursvalid = False
+    wagevalid = False
+    while hoursvalid == False:
+        hours = input("How many hours does " + name_var + " work per week? ")
+        try:
+            hours = float(hours)
+            hoursvalid = True
+        except ValueError:
+            hoursvalid = False
+    while wagevalid == False:
+        wage_var = input("How much does " + name_var + " make per hour? ")
+        try:
+            wage = float(wage)
+            wagevalid = True
+        except ValueError:
+            wagevalid=False
     weekly = hours*wage_var
     monthly = weekly*4
     print(name_var + " makes " + '${:,.2f}'.format(weekly) + " per week and approximately " + '${:,.2f}'.format(monthly) + " per month.")
