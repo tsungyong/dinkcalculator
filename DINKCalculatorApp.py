@@ -27,10 +27,7 @@ def ene(name_var):
         elif ene == 2:
             income = salary(name_var)
             valid = True
-        #error
-        else:
-            print("I'm sorry, I did not recognize that input. Please start over.")
-    return income    
+    return income
 
 #pulls name_a or name_b from DINKcalculator()
 def wage(name_var):
@@ -70,46 +67,46 @@ def taxes(income):
     return taxes
 
 def expenses():
-    exp_option = int(input("Enter 1 if you would like to itemize expenses or 2 to not: "))
-    #int input for each expense category
-    if exp_option == 1:
-        rent = float(input("Monthly housing costs: "))
-        health = float(input("Monthly healthcare costs: "))
-        transportation = float(input("Monthly transportation costs: "))
-        food = float(input("Monthly food costs: "))
-        debt = float(input("Monthly debt payments: "))
-        shopping = float(input("Other monthly expenses: "))
-        total_expenses = rent + health + transportation + food + shopping + debt
-    #int input for total expenses
-    elif exp_option == 2:
-        total_expenses = float(input("Total monthly expenses: "))
-    #error
-    else:
-        print("I'm sorry, I did not recognize that input. Please start over.")
-        return
+    valid = False
+    while valid == False:
+        exp_option = int(input("Enter 1 if you would like to itemize expenses or 2 to not: "))
+        #int input for each expense category
+        if exp_option == 1:
+            valid = True
+            rent = float(input("Monthly housing costs: "))
+            health = float(input("Monthly healthcare costs: "))
+            transportation = float(input("Monthly transportation costs: "))
+            food = float(input("Monthly food costs: "))
+            debt = float(input("Monthly debt payments: "))
+            shopping = float(input("Other monthly expenses: "))
+            total_expenses = rent + health + transportation + food + shopping + debt
+            #int input for total expenses
+        elif exp_option == 2:
+            valid = True
+            total_expenses = float(input("Total monthly expenses: "))
     print("Total monthly expenses: " + '${:,.2f}'.format(total_expenses))
     return total_expenses
 
 def retirement(mon_save):
+    valid = False
     balance = float(input("How much do you currently have saved for retirement? "))
     years_till = int(input("How many years until retirement? "))
-    rate_choice = int(input("Enter 1 to use default growth rate. Enter 2 to use a custom rate. "))
-    if rate_choice == 1:
-        if years_till <= 10:
-            rate = .04
-        elif years_till <= 25:
-            rate = .05
-        else:
-            rate = .06
-    elif rate_choice == 2:
-        rate = float(input("Enter an interest rate in decimals: "))
-    else:
-        print("I'm sorry, I did not recognize that input. Please start over.")
-        return
+    while valid == False:
+        rate_choice = int(input("Enter 1 to use default growth rate. Enter 2 to use a custom rate. "))
+        if rate_choice == 1:
+            valid = True
+            if years_till <= 10:
+                rate = .04
+            elif years_till <= 25:
+                rate = .05
+            else:
+                rate = .06
+        elif rate_choice == 2:
+            valid = True
+            rate = float(input("Enter an interest rate in decimals: "))
     monthly_rate = rate/12
     n_months = years_till*12
     final_savings = balance*(1+monthly_rate)**n_months + ((1+monthly_rate)**n_months-1)/monthly_rate*mon_save
     return final_savings
-    #print(final_savings)
 
 DINKcalculator()
