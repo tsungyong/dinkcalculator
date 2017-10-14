@@ -106,7 +106,7 @@ def expenses():
     s_valid = False
     while valid == False:
         try:
-            exp_option = int(input("Enter 1 if you would like to itemize expenses or 2 to not: "))
+            exp_option = int(input("Enter 1 to itemize expenses or 2 to enter a gross number: "))
             #int input for each expense category
             if exp_option == 1:
                 valid = True
@@ -115,37 +115,37 @@ def expenses():
                         rent = float(input("Monthly housing costs: "))
                         r_valid = True
                     except ValueError:
-                        print("Try again.")
+                        r_valid = False
                 while h_valid == False:
                     try:
                         health = float(input("Monthly healthcare costs: "))
                         h_valid = True
                     except ValueError:
-                        print("Try again.")
+                        h_valid = False
                 while t_valid == False:
                     try:
                         transportation = float(input("Monthly transportation costs: "))
                         t_valid = True
                     except ValueError:
-                        print("Try again.")
+                        t_valid = False
                 while f_valid == False:
                     try:
                         food = float(input("Monthly food costs: "))
                         f_valid = True
                     except ValueError:
-                        print("Try again.")
+                        f_valid = False
                 while d_valid == False:
                     try:
                         debt = float(input("Monthly debt payments: "))
                         d_valid = True
                     except ValueError:
-                        print("Try again.")
+                        d_valid = False
                 while s_valid == False:
                     try:
                         shopping = float(input("Other monthly expenses: "))
                         s_valid = True
                     except ValueError:
-                        print("Try again.")
+                        s_valid = False
                 total_expenses = rent + health + transportation + food + shopping + debt
                 #int input for total expenses
             elif exp_option == 2:
@@ -156,9 +156,9 @@ def expenses():
                         total_expenses = float(input("Total monthly expenses: "))
                         te_valid = True
                     except ValueError:
-                        print("Try again.")
+                        te_valid = False
         except ValueError:
-            print("Try again.")
+            valid = False
     print("Total monthly expenses: " + '${:,.2f}'.format(total_expenses))
     return total_expenses
 
@@ -181,7 +181,7 @@ def retirement(mon_save):
             y_valid = False
     while rc_valid == False:
         try:
-            rate_choice = int(input("Enter 1 to use default growth rate. Enter 2 to use custom rate: "))
+            rate_choice = int(input("Enter 1 to use default growth rate or 2 to use a custom rate: "))
             if rate_choice == 1:
                 rc_valid = True
                 if years_till <= 10:
