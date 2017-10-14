@@ -18,17 +18,19 @@ def DINKcalculator():
 
 #pulls name_a or name_b from DINKcalculator()
 def ene(name_var):
-    ene = int(input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
-    if ene == 1:
-        income = wage(name_var)
-        return income
-    elif ene == 2:
-        income = salary(name_var)
-        return income
-    #error
-    else:
-        print("I'm sorry, I did not recognize that input. Please start over.")
-        return
+    valid = False
+    while valid == False:
+        ene = int(input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
+        if ene == 1:
+            income = wage(name_var)
+            valid = True
+        elif ene == 2:
+            income = salary(name_var)
+            valid = True
+        #error
+        else:
+            print("I'm sorry, I did not recognize that input. Please start over.")
+    return income    
 
 #pulls name_a or name_b from DINKcalculator()
 def wage(name_var):
