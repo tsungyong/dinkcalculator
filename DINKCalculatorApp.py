@@ -1,4 +1,4 @@
-#personal finance calculator developed by managerclaire
+# personal finance calculator developed by managerclaire
 def DINKcalculator():
     name_a = input("First spouse's name: ")
     name_b = input("Second spouse's name: ")
@@ -10,24 +10,27 @@ def DINKcalculator():
     total_expenses = expenses()
     savings = combined_income - total_expenses - monthly_taxes
     final_savings = retirement(savings)
-    gross_annual = combined_income*12
-    net_annual = (combined_income - monthly_taxes)*12
-    annual_savings = final_savings*12
-    print_function(combined_income,monthly_taxes,savings,final_savings)
+    gross_annual = combined_income * 12
+    net_annual = (combined_income - monthly_taxes) * 12
+    annual_savings = final_savings * 12
+    print_function(combined_income, monthly_taxes, savings, final_savings)
 
-#handles results
-def print_function(income,taxes,savings,retirement):
+
+# handles results
+def print_function(income, taxes, savings, retirement):
     print("Gross monthly income: " + '${:,.2f}'.format(income))
     print("Approximate monthly taxes: " + '${:,.2f}'.format(taxes))
     print("Approximate monthly savings: " + '${:,.2f}'.format(savings))
     print("Retirement balance: " + '${:,.2f}'.format(retirement))
 
-#pulls name_a or name_b from DINKcalculator()
+
+# pulls name_a or name_b from DINKcalculator()
 def ene(name_var):
     valid = False
     while valid == False:
         try:
-            ene = int(input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
+            ene = int(
+                input("Enter 1 if " + name_var + " is paid an hourly wage or 2 if " + name_var + " is paid a salary: "))
             if ene == 1:
                 income = wage(name_var)
                 valid = True
@@ -38,7 +41,8 @@ def ene(name_var):
             valid = False
     return income
 
-#pulls name_a or name_b from DINKcalculator()
+
+# pulls name_a or name_b from DINKcalculator()
 def wage(name_var):
     hoursvalid = False
     wagevalid = False
@@ -56,12 +60,14 @@ def wage(name_var):
             wagevalid = True
         except ValueError:
             wagevalid = False
-    weekly = hours*wage_var
-    monthly = weekly*4
-    print(name_var + " makes " + '${:,.2f}'.format(weekly) + " per week and approximately " + '${:,.2f}'.format(monthly) + " per month.")
+    weekly = hours * wage_var
+    monthly = weekly * 4
+    print(name_var + " makes " + '${:,.2f}'.format(weekly) + " per week and approximately " + '${:,.2f}'.format(
+        monthly) + " per month.")
     return monthly
 
-#pulls name_a or name_b from DINKcalculator()
+
+# pulls name_a or name_b from DINKcalculator()
 def salary(name_var):
     valid = False
     while valid == False:
@@ -75,10 +81,11 @@ def salary(name_var):
     print(name_var + " makes " + '${:,.2f}'.format(monthly) + " per month.")
     return monthly
 
-#pulls combined_income from DINKcalculator()
+
+# pulls combined_income from DINKcalculator()
 def taxes(income):
-    annual_income = income*12
-    tax_income = annual_income - 12700 - 4050*2
+    annual_income = income * 12
+    tax_income = annual_income - 12700 - 4050 * 2
     if tax_income <= 18650:
         pct = .10
     elif tax_income <= 75900:
@@ -93,8 +100,9 @@ def taxes(income):
         pct = .35
     else:
         pct = .396
-    taxes = tax_income*pct + tax_income*.0765
+    taxes = tax_income * pct + tax_income * .0765
     return taxes
+
 
 def expenses():
     valid = False
@@ -107,7 +115,7 @@ def expenses():
     while valid == False:
         try:
             exp_option = int(input("Enter 1 to itemize expenses or 2 to enter a gross number: "))
-            #int input for each expense category
+            # int input for each expense category
             if exp_option == 1:
                 valid = True
                 while r_valid == False:
@@ -147,7 +155,7 @@ def expenses():
                     except ValueError:
                         s_valid = False
                 total_expenses = rent + health + transportation + food + shopping + debt
-                #int input for total expenses
+                # int input for total expenses
             elif exp_option == 2:
                 valid = True
                 te_valid = False
@@ -161,6 +169,7 @@ def expenses():
             valid = False
     print("Total monthly expenses: " + '${:,.2f}'.format(total_expenses))
     return total_expenses
+
 
 def retirement(mon_save):
     b_valid = False
@@ -202,10 +211,12 @@ def retirement(mon_save):
                 rc_valid = False
         except ValueError:
             rc_valid = False
-    monthly_rate = rate/12
-    n_months = years_till*12
-    final_savings = balance*(1+monthly_rate)**n_months + ((1+monthly_rate)**n_months-1)/monthly_rate*mon_save
+    monthly_rate = rate / 12
+    n_months = years_till * 12
+    final_savings = balance * (1 + monthly_rate) ** n_months + (
+                (1 + monthly_rate) ** n_months - 1) / monthly_rate * mon_save
     return final_savings
+
 
 if __name__ == "__main__":
     DINKcalculator()
