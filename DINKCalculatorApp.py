@@ -61,7 +61,7 @@ def wage(name_var):
         except ValueError:
             wagevalid = False
     weekly = hours * wage_var
-    monthly = weekly * 4
+    monthly = weekly * 4.34524
     print(name_var + " makes " + '${:,.2f}'.format(weekly) + " per week and approximately " + '${:,.2f}'.format(
         monthly) + " per month.")
     return monthly
