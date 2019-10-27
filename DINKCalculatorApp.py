@@ -2,8 +2,8 @@
 def DINKcalculator():
     name_a = input("First spouse's name: ")
     name_b = input("Second spouse's name: ")
-    income_a = ene(name_a)
-    income_b = ene(name_b)
+    income_a = monthly_income(name_a)
+    income_b = monthly_income(name_b)
     combined_income = income_a + income_b
     tax = taxes(combined_income)
     monthly_taxes = tax / 12
@@ -25,7 +25,7 @@ def print_function(income, taxes, savings, retirement):
 
 
 # pulls name_a or name_b from DINKcalculator()
-def ene(name_var):
+def monthly_income(name_var):
     valid = False
     while valid == False:
         try:
