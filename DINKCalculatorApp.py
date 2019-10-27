@@ -207,4 +207,5 @@ def retirement(mon_save):
     final_savings = balance*(1+monthly_rate)**n_months + ((1+monthly_rate)**n_months-1)/monthly_rate*mon_save
     return final_savings
 
-DINKcalculator()
+if __name__ == "__main__":
+    DINKcalculator()
